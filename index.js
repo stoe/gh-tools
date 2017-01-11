@@ -1,4 +1,4 @@
-#!/Users/stoe/.nvm/versions/node/v7.2.1/bin/node
+#!/usr/local/bin/node
 
 // Packages
 const args = require('args');

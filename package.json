@@ -1,7 +1,9 @@
 {
-  "name": "github-tools",
+  "name": "gh-ps-tools",
   "version": "1.0.0",
+  "description": "GitHub Professional Services Tools",
   "main": "index.js",
+  "repository": "git@github.com:stoe/gh-ps-tools.git",
   "author": "Stefan Stölzle <stefan@stoelzle.me>",
   "license": "MIT",
   "dependencies": {

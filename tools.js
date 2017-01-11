@@ -1,5 +1,3 @@
-#!/Users/stoe/.nvm/versions/node/v7.2.1/bin/node
-
 exports.tools = {
   radar: () => {
     return new Promise((resolve, reject) => {

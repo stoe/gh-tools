@@ -1,0 +1,14 @@
+{
+  "name": "github-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Stefan Stölzle <stefan@stoelzle.me>",
+  "license": "MIT",
+  "dependencies": {
+    "args": "^2.2.1",
+    "chalk": "^1.1.3",
+    "gh-got": "^5.0.0",
+    "graphql": "^0.8.2",
+    "opn": "^4.0.2"
+  }
+}

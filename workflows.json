@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "uid"  : "radar",
+      "title": "GitHub Services Radar",
+      "icon" : "services"
+    },
+    {
+      "uid"  : "services",
+      "title": "GitHub Services",
+      "icon" : "services"
+    },
+    {
+      "uid"  : "services-engineering",
+      "title": "GitHub Services Engineering",
+      "icon" : "services"
+    },
+    {
+      "uid"  : "services-operations",
+      "title": "GitHub Services Operations",
+      "icon" : "services"
+    },
+    {
+      "uid"  : "services-training",
+      "title": "GitHub Services Training",
+      "icon" : "services"
+    }
+  ]
+}

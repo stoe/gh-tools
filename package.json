@@ -4,7 +4,7 @@
   "description": "GitHub Professional Services Tools",
   "main": "index.js",
   "scripts": {
-    "test": "xo"
+    "test": "snyk test && xo"
   },
   "repository": "git@github.com:stoe/gh-ps-tools.git",
   "author": "Stefan Stölzle <stefan@stoelzle.me>",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "snyk": "^1.24.4",
     "xo": "^0.17.1"
   },
   "xo": {

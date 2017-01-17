@@ -3,27 +3,32 @@
     {
       "uid"  : "radar",
       "title": "GitHub Services Radar",
-      "icon" : "services"
+      "icon" : "services",
+      "cmd": "r, radar"
     },
     {
       "uid"  : "services",
       "title": "GitHub Services",
-      "icon" : "services"
+      "icon" : "services",
+      "cmd": "s, services"
     },
     {
       "uid"  : "services-engineering",
       "title": "GitHub Services Engineering",
-      "icon" : "services"
+      "icon" : "services",
+      "cmd": "se, services-engineering"
     },
     {
       "uid"  : "services-operations",
       "title": "GitHub Services Operations",
-      "icon" : "services"
+      "icon" : "services",
+      "cmd": "so, services-operations"
     },
     {
       "uid"  : "services-training",
       "title": "GitHub Services Training",
-      "icon" : "services"
+      "icon" : "services",
+      "cmd": "st, services-training"
     }
   ]
 }

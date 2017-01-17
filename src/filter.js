@@ -14,7 +14,7 @@ _.forIn(workflows.items, flow => {
     valid: regex.test(flow.uid),
     autocomplete: flow.uid,
     type: 'default',
-    subtitle: flow.title,
+    subtitle: flow.cmd,
     icon: (flow.icon) ? {
       type: 'png',
       path: path.resolve(__dirname, '../assets/' + flow.icon + '.png')

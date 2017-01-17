@@ -14,7 +14,7 @@ _.forIn(workflows.items, flow => {
     valid: regex.test(flow.uid),
     autocomplete: flow.uid,
     type: 'default',
-    subtitle: flow.cmd,
+    subtitle: flow.cmd.join(', '),
     icon: (flow.icon) ? {
       type: 'png',
       path: path.resolve(__dirname, '../assets/' + flow.icon + '.png')
@@ -23,7 +23,7 @@ _.forIn(workflows.items, flow => {
 });
 
 _.pickBy(workflows.items, flow => {
-  if (regex.test(flow.uid)) {
+  if (regex.test(flow.uid) || (flow.cmd.indexOf(substring) > -1)) {
     items.push(flow);
 
     return flow;

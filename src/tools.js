@@ -25,7 +25,7 @@ exports.tools = {
           issues(first: 1, labels: "O: radar", states: OPEN) {
             edges {
               node {
-                path
+                url
               }
             }
           }
@@ -34,9 +34,9 @@ exports.tools = {
 
       getResponse(query)
         .then(response => {
-          let radar = response.body.data.repository.issues.edges[0].node.path;
+          let url = response.body.data.repository.issues.edges[0].node.url;
 
-          resolve(`https://github.com${radar}`);
+          resolve(`${url}`);
         })
         .catch(err => {
           reject(err);

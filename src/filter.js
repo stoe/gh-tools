@@ -30,8 +30,6 @@ _.pickBy(workflows.items, flow => {
   }
 });
 
-// items = _.sortBy(items, 'uuid');
-
 console.log(JSON.stringify({
   items: items
 }));

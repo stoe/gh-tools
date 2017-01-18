@@ -2,13 +2,33 @@
   "name": "gh-ps-tools",
   "version": "1.0.0",
   "description": "GitHub Professional Services Tools",
+  "keywords": [
+    "alfred",
+    "app",
+    "workflow",
+    "plugin",
+    "helper",
+    "util",
+    "utility",
+    "macos",
+    "mac",
+    "osx"
+  ],
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/stoe/gh-ps-tools",
+  "author": {
+    "name": "Stefan Stölzle",
+    "email": "stefan@stoelzle.me",
+    "url": "http://stefan.stoelzle.me"
+  },
   "main": "index.js",
   "scripts": {
     "test": "snyk test && xo"
   },
-  "repository": "git@github.com:stoe/gh-ps-tools.git",
-  "author": "Stefan Stölzle <stefan@stoelzle.me>",
-  "license": "MIT",
+  "engines": {
+    "node": ">=7"
+  },
   "dependencies": {
     "args": "^2.2.1",
     "gh-got": "^5.0.0",

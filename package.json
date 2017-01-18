@@ -33,6 +33,7 @@
     "args": "^2.2.1",
     "gh-got": "^5.0.0",
     "graphql": "^0.8.2",
+    "moment": "^2.17.1",
     "opn": "^4.0.2"
   },
   "devDependencies": {

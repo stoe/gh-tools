@@ -1,6 +1,12 @@
 {
   "items": [
     {
+      "uid"  : "status",
+      "title": "GitHub System Status",
+      "icon" : "status",
+      "cmd": ["status"]
+    },
+    {
       "uid"  : "radar",
       "title": "GitHub Services Radar",
       "icon" : "gh",

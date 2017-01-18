@@ -16,6 +16,17 @@ const openURL = response => {
   });
 };
 
+// status
+args.command('status', 'List Current System Status', () => {
+  ghTools.status()
+    .then(res => {
+      console.log(`${res.date}\n\n${res.status}\n${res.msg}`);
+    })
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
 // radar
 args.command(['r', 'radar'], `Open current Services Radar`, () => {
   ghTools.radar()

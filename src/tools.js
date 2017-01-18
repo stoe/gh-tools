@@ -1,3 +1,7 @@
+// Packages
+const ghgot = require('gh-got');
+const moment = require('moment');
+
 // Mine
 const getResponse = query => {
   const token = require('../config.json').token || false;
@@ -6,7 +10,7 @@ const getResponse = query => {
     throw new Error(`token is not defined`);
   }
 
-  return require('gh-got')('https://api.github.com/graphql', {
+  return ghgot('https://api.github.com/graphql', {
     json: true,
     headers: {
       authorization: `bearer ${token}`
@@ -18,6 +22,23 @@ const getResponse = query => {
 };
 
 exports.tools = {
+  status: () => {
+    return new Promise((resolve, reject) => {
+      ghgot('https://status.github.com/api/last-message.json')
+        .then(response => {
+          let data = response.body;
+
+          resolve({
+            status: `${data.status} 🦄`,
+            msg: data.body,
+            date: moment(data.created_on).format('MMMM DD YYYY HH:mm')
+          });
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
   radar: () => {
     return new Promise((resolve, reject) => {
       let query = `query {

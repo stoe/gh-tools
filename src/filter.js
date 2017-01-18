@@ -16,10 +16,10 @@ for (var i = 0; i < workflows.length; i++) {
     autocomplete: flow.uid,
     type: 'default',
     subtitle: flow.cmd.join(', '),
-    icon: (flow.icon) ? {
+    icon: {
       type: 'png',
-      path: path.resolve(__dirname, '../assets/' + flow.icon + '.png')
-    } : null
+      path: path.resolve(__dirname, '../assets/' + (flow.icon || 'icon') + '.png')
+    }
   });
 
   if (regex.test(flow.uid) || (flow.cmd.indexOf(substring) > -1)) {

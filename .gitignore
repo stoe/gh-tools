@@ -1,4 +1,5 @@
 config.json
+yarn.lock
 
 # Logs
 logs

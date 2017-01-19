@@ -43,6 +43,9 @@
   },
   "xo": {
     "space": true,
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+        "!{config.json}"
+    ]
   }
 }

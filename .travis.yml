@@ -9,7 +9,6 @@ notifications:
     on_failure: change
 
 cache:
-  yarn: true
   directories:
     - node_modules
 
@@ -18,5 +17,5 @@ env:
     secure: Yh93a5R4Gh93NyPGVF/jEMBUYvcxEWMqbHwXBpAG4frjlW2y79ttOo59jLF8jHd/Rd60TqlLNEixAJmlZ4eeHpdyJYOSofcT5V6aJgieSY0synVWAQ57Alyxp7IUqBKkmqQy8FAeW68OLb17DMUKzfxvXZ6aZmX1ClCyFiSX1IWqqCW+f61EWmr3exKoTVZtV/5HFeZQE8N1leU+XFwSYmx99jtm+Ii7kZgo3izbcEvn1WLc/0nH0hS2vj8iGJ/bwyvNClS7ilse2Lc3D3IfOaMpFupy3CVxmdAnDbpJYSUREVTuTGF7AK2Aij/a6/kcS9GwhvEf8dJtnKi57IasAV8vMhgpvqxWeApm9nu9WNRCS24qFDqPeewcB9we1MWm2DR3CHvIWUUPH8fRvSkyGAkeG7W7xpQAq6iG6QaA5RWcME5e/iCj9YGkySABqnvBuuWZM+92rpRPD5RaPdab8Xsu33TKwf69rwN0FHGWCC757E3GxkSHXYmniHHVdoqQyE5BT8QErsrXcS0yFqb6s2zRRfyk5ZGWMMjY15telwfGhj30Oj0p/66UhxsSoVxf7m1yv6628l4oDi5bXAVYg06RTIij9uEo+bFxjfXmPmrhbMKHuFLSx2LR+tj4RC6fzG4Jas/6nZ+dPqdke2TH/Yvc1LBKkKsoZiAbNHDgHrw=
 
 before_script: 'snyk auth $SNYK_TOKEN'
-script: 'yarn test'
+script: 'npm test'
 after_script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'

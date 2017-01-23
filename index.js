@@ -11,8 +11,8 @@ const openURL = response => {
 
   opn(response, {
     wait: false
-  }).then(response => {
-    console.log(response.spawnargs[1]);
+  }).then(res => {
+    console.log(res.spawnargs[1]);
   });
 };
 
@@ -22,15 +22,6 @@ args.command('status', 'List Current System Status', () => {
     .then(res => {
       console.log(`${res.date}\n\n${res.status}\n${res.msg}`);
     })
-    .catch(err => {
-      console.log(`${err}`);
-    });
-});
-
-// radar
-args.command(['r', 'radar'], `Open current Services Radar`, () => {
-  ghTools.radar()
-    .then(openURL)
     .catch(err => {
       console.log(`${err}`);
     });
@@ -72,8 +63,51 @@ args.command(['st', 'services-training'], `Open https://github.com/github/servic
     });
 });
 
+// radar
+args.command(['r', 'radar'], `Open current Services Radar`, () => {
+  ghTools.radar()
+    .then(openURL)
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
+// APAC
+args.command('apac', 'List open APAC issues', () => {
+  ghTools.territory('APAC')
+    .then(res => {
+      console.log(`Total Count: ${res.count}`);
+
+      return res;
+    })
+    .then(res => {
+      openURL(res.url);
+      openURL(res.project);
+    })
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
+// EMEA
+args.command('emea', 'List open EMEA issues', () => {
+  ghTools.territory('EMEA')
+    .then(res => {
+      console.log(`Total Count: ${res.count}`);
+
+      return res;
+    })
+    .then(res => {
+      openURL(res.url);
+      openURL(res.project);
+    })
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
 args.parse(process.argv, {
-  name: 'github-tools'
+  name: 'gh-tools'
 });
 
 if (process.argv.length <= 2) {

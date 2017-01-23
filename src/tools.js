@@ -12,12 +12,8 @@ const getResponse = query => {
 
   return ghgot('https://api.github.com/graphql', {
     json: true,
-    headers: {
-      authorization: `bearer ${token}`
-    },
-    body: {
-      query
-    }
+    headers: { authorization: `bearer ${token}` },
+    body: { query }
   });
 };
 
@@ -77,6 +73,39 @@ exports.tools = {
           let url = response.body.data.repository.url;
 
           resolve(`${url}`);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
+  territory: territory => {
+    return new Promise((resolve, reject) => {
+      let query = `query {
+        repository(owner: "github", name: "services") {
+          issues(first: 100, states: OPEN, labels: "ST: ${territory}") {
+            totalCount
+          }
+          url,
+          projects(first: 10, search: "ST: EMEA") {
+            nodes {
+              url
+            }
+          }
+        }
+      }`;
+
+      getResponse(query)
+        .then(response => {
+          resolve({
+            url: response.body.data.repository.url
+              ? `${response.body.data.repository.url}/issues?q=is:open is:issue label:"ST: ${territory}"`
+              : null,
+            count: Number.parseInt(
+              response.body.data.repository.issues.totalCount
+            ),
+            project: response.body.data.repository.projects.nodes[0].url
+          });
         })
         .catch(err => {
           reject(err);

@@ -7,12 +7,6 @@
       "cmd": ["status"]
     },
     {
-      "uid"  : "radar",
-      "title": "GitHub Services Radar",
-      "icon" : "services",
-      "cmd": ["r", "radar"]
-    },
-    {
       "uid"  : "services",
       "title": "GitHub Services",
       "icon" : "services",
@@ -35,6 +29,22 @@
       "title": "GitHub Services Training",
       "icon" : "services",
       "cmd": ["train", "services-training"]
+    },
+    {
+      "uid"  : "radar",
+      "title": "GitHub Services Radar",
+      "icon" : "services",
+      "cmd": ["r", "radar"]
+    },
+    {
+      "uid"  : "apac",
+      "title": "List open APAC issues",
+      "cmd": ["apac"]
+    },
+    {
+      "uid"  : "emea",
+      "title": "List open EMEA issues",
+      "cmd": ["emea"]
     }
   ]
 }

@@ -83,11 +83,11 @@ exports.tools = {
     return new Promise((resolve, reject) => {
       let query = `query {
         repository(owner: "github", name: "services") {
-          issues(first: 100, states: OPEN, labels: "ST: ${territory}") {
+          url
+          issues(states: OPEN, labels: "ST: ${territory}") {
             totalCount
           }
-          url,
-          projects(first: 10, search: "ST: EMEA") {
+          projects(search: "ST: ${territory}") {
             nodes {
               url
             }
@@ -106,6 +106,49 @@ exports.tools = {
             ),
             project: response.body.data.repository.projects.nodes[0].url
           });
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
+  projects: (number = 2) => {
+    return new Promise(function(resolve, reject) {
+      let query = `query {
+        repository(owner: "github", name: "services") {
+          project(number: ${number}) {
+            ... on Project {
+              columns(first: 1) {
+                nodes {
+                  ... on ProjectColumn {
+                    columnname: name
+                  }
+                  cards(first: 100) {
+                    edges {
+                      node {
+                        content {
+                          ... on Issue {
+                            title
+                            url
+                          }
+                          ... on PullRequest {
+                            title
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`;
+
+      getResponse(query)
+        .then(response => {
+          resolve(response.body.data.repository.project);
         })
         .catch(err => {
           reject(err);

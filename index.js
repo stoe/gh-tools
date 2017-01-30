@@ -1,7 +1,9 @@
 #!/usr/local/bin/node
 
 // Packages
-const args = require('args');
+const args = require('args')
+const clipboardy = require('clipboardy');;
+const _ = require('lodash');
 
 // Mine
 const ghTools = require('./src/tools').tools;
@@ -67,6 +69,53 @@ args.command(['st', 'services-training'], `Open https://github.com/github/servic
 args.command(['r', 'radar'], `Open current Services Radar`, () => {
   ghTools.radar()
     .then(openURL)
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
+// projects
+args.command(['projects'], `My GitHub Services Projects`, () => {
+  ghTools.projects()
+    .then(emea => {
+      return ghTools.projects(3).then(apac => {
+          return {
+            emea: emea,
+            apac: apac
+          };
+        })
+    })
+    .then(res => {
+      let print = [
+        ':earth_africa: **[Customers EMEA](https://github.com/github/services/projects/2)**'
+      ];
+
+      res.emea.columns.nodes.map(column => {
+        if (column.cards.edges.length) {
+          column.cards.edges.map(edge => {
+            print.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
+          })
+        }
+      });
+
+      print.push('');
+
+      print.push(':earth_asia: **[Customers APAC](https://github.com/github/services/projects/3)**');
+
+      res.apac.columns.nodes.map(column => {
+        if (column.cards.edges.length) {
+          column.cards.edges.map(edge => {
+            print.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
+          })
+        }
+      });
+
+      print.push('');
+
+      clipboardy.writeSync(print.join('\n'));
+
+      console.log('copied to clipboard');
+    })
     .catch(err => {
       console.log(`${err}`);
     });

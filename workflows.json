@@ -25,6 +25,12 @@
       "cmd": ["ops", "services-operations"]
     },
     {
+      "uid"  : "services-tools",
+      "title": "GitHub Services Tools",
+      "icon" : "services",
+      "cmd": ["tool", "services-tools"]
+    },
+    {
       "uid"  : "services-training",
       "title": "GitHub Services Training",
       "icon" : "services",

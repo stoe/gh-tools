@@ -56,6 +56,15 @@ args.command(['ops', 'services-operations'], `Open https://github.com/github/ser
     });
 });
 
+// services-operations
+args.command(['tool', 'services-tools'], `Open https://github.com/github/services-tools`, () => {
+  ghTools.repo('services-tools')
+    .then(openURL)
+    .catch(err => {
+      console.log(`${err}`);
+    });
+});
+
 // services-training
 args.command(['train', 'services-training'], `Open https://github.com/github/services-training`, () => {
   ghTools.repo('services-training')

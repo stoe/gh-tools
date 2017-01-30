@@ -39,7 +39,7 @@ args.command(['s', 'services'], `Open https://github.com/github/services`, () =>
 });
 
 // services-engineering
-args.command(['se', 'services-engineering'], `Open https://github.com/github/services-engineering`, () => {
+args.command(['eng', 'services-engineering'], `Open https://github.com/github/services-engineering`, () => {
   ghTools.repo('services-engineering')
     .then(openURL)
     .catch(err => {
@@ -48,7 +48,7 @@ args.command(['se', 'services-engineering'], `Open https://github.com/github/ser
 });
 
 // services-operations
-args.command(['so', 'services-operations'], `Open https://github.com/github/services-operations`, () => {
+args.command(['ops', 'services-operations'], `Open https://github.com/github/services-operations`, () => {
   ghTools.repo('services-operations')
     .then(openURL)
     .catch(err => {
@@ -57,7 +57,7 @@ args.command(['so', 'services-operations'], `Open https://github.com/github/serv
 });
 
 // services-training
-args.command(['st', 'services-training'], `Open https://github.com/github/services-training`, () => {
+args.command(['train', 'services-training'], `Open https://github.com/github/services-training`, () => {
   ghTools.repo('services-training')
     .then(openURL)
     .catch(err => {

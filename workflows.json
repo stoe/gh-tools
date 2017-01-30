@@ -37,6 +37,12 @@
       "cmd": ["r", "radar"]
     },
     {
+      "uid"  : "projects",
+      "title": "My GitHub Services Projects",
+      "icon" : "services",
+      "cmd": ["projects"]
+    },
+    {
       "uid"  : "apac",
       "title": "List open APAC issues",
       "cmd": ["apac"]

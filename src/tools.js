@@ -111,5 +111,48 @@ exports.tools = {
           reject(err);
         });
     });
+  },
+  projects: (number = 2) => {
+    return new Promise(function(resolve, reject) {
+      let query = `query {
+        repository(owner: "github", name: "services") {
+          project(number: ${number}) {
+            ... on Project {
+              columns(first: 1) {
+                nodes {
+                  ... on ProjectColumn {
+                    columnname: name
+                  }
+                  cards(first: 100) {
+                    edges {
+                      node {
+                        content {
+                          ... on Issue {
+                            title
+                            url
+                          }
+                          ... on PullRequest {
+                            title
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`;
+
+      getResponse(query)
+        .then(response => {
+          resolve(response.body.data.repository.project);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 };

@@ -2,7 +2,7 @@
   "name": "gh-ps-tools",
   "version": "1.0.3",
   "description": "GitHub Professional Services Tools",
-  "homepage" : "https://github.com/stoe/gh-ps-tools",
+  "homepage": "https://github.com/stoe/gh-ps-tools",
   "keywords": [
     "helper",
     "utility"
@@ -21,7 +21,7 @@
     "email": "stefan@stoelzle.me",
     "url": "https://github.com/stoe"
   },
-  "contributors" : [],
+  "contributors": [],
   "main": "index.js",
   "scripts": {
     "test": "snyk test && xo"
@@ -31,8 +31,10 @@
   },
   "dependencies": {
     "args": "^2.2.1",
+    "clipboardy": "^0.1.2",
     "gh-got": "^5.0.0",
     "graphql": "^0.8.2",
+    "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "opn": "^4.0.2"
   },
@@ -45,7 +47,7 @@
     "space": true,
     "parser": "babel-eslint",
     "ignore": [
-        "!{config.json}"
+      "!{config.json}"
     ]
   }
 }

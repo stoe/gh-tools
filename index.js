@@ -56,7 +56,7 @@ args.command(['ops', 'services-operations'], `Open https://github.com/github/ser
     });
 });
 
-// services-operations
+// services-tools
 args.command(['tool', 'services-tools'], `Open https://github.com/github/services-tools`, () => {
   ghTools.repo('services-tools')
     .then(openURL)

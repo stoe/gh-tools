@@ -18,15 +18,16 @@ for (var i = 0; i < workflows.length; i++) {
     subtitle: flow.cmd.join(', '),
     icon: {
       type: 'png',
-      path: path.resolve(__dirname, '../assets/' + (flow.icon || 'icon') + '.png')
+      path: path.resolve(
+        __dirname,
+        '../assets/' + (flow.icon || 'icon') + '.png'
+      )
     }
   });
 
-  if (regex.test(flow.uid) || (flow.cmd.indexOf(substring) > -1)) {
+  if (regex.test(flow.uid) || flow.cmd.indexOf(substring) > -1) {
     items.push(flow);
   }
 }
 
-console.log(JSON.stringify({
-  items: items
-}));
+console.log(JSON.stringify({ items: items }));

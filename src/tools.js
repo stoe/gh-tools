@@ -87,7 +87,7 @@ exports.tools = {
           issues(states: OPEN, labels: "ST: ${territory}") {
             totalCount
           }
-          projects(search: "ST: ${territory}") {
+          projects(first: 1, search: "ST: ${territory}") {
             nodes {
               url
             }
@@ -97,14 +97,14 @@ exports.tools = {
 
       getResponse(query)
         .then(response => {
+          let repo = response.body.data.repository;
+
           resolve({
-            url: response.body.data.repository.url
-              ? `${response.body.data.repository.url}/issues?q=is:open is:issue label:"ST: ${territory}"`
+            url: repo.url
+              ? `${repo.url}/issues?q=is:open is:issue label:"ST: ${territory}"`
               : null,
-            count: Number.parseInt(
-              response.body.data.repository.issues.totalCount
-            ),
-            project: response.body.data.repository.projects.nodes[0].url
+            count: Number.parseInt(repo.issues.totalCount),
+            project: repo.projects.nodes[0].url
           });
         })
         .catch(err => {

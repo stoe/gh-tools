@@ -85,43 +85,61 @@ args.command(['r', 'radar'], `Open current Services Radar`, () => {
 
 // projects
 args.command(['projects'], `My GitHub Services Projects`, () => {
-  ghTools.projects()
+  let data = {
+    emea: [
+      ':earth_africa: **[Customers EMEA](https://github.com/github/services/projects/2)**'
+    ],
+    apac: [
+      ':earth_asia: **[Customers APAC](https://github.com/github/services/projects/3)**'
+    ],
+    partner: [
+      ':briefcase: **Partner**'
+    ],
+    github: [
+      ':octocat: **GitHub**'
+    ]
+  }
+
+  const mapData = (column, territory, partner, github) => {
+    if (column.name === 'Customers' && !!territory) {
+      column.cards.edges.map(edge => {
+        territory.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
+      });
+    }
+
+    if (column.name === 'Partners' && !!partner) {
+      column.cards.edges.map(edge => {
+        partner.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
+      });
+    }
+
+    if (column.name === 'GitHub' && !!github) {
+      column.cards.edges.map(edge => {
+        github.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
+      });
+    }
+  }
+
+  ghTools.projects(2)
     .then(emea => {
+      emea.map((column, i) => mapData.call(null, column, data.emea, data.partner, data.github));
+
       return ghTools.projects(3).then(apac => {
-          return {
-            emea: emea,
-            apac: apac
-          };
-        })
+        apac.map((column, i) => mapData.call(null, column, data.apac, data.partner, data.github));
+      });
     })
     .then(res => {
-      let print = [
-        ':earth_africa: **[Customers EMEA](https://github.com/github/services/projects/2)**'
-      ];
+      let cbStr = [
+        _.uniq(data.emea).join('\n'),
+        '',
+        _.uniq(data.apac).join('\n'),
+        '',
+        _.uniq(data.partner).join('\n'),
+        '',
+        _.uniq(data.github).join('\n'),
+      ].join('\n');
 
-      res.emea.columns.nodes.map(column => {
-        if (column.cards.edges.length) {
-          column.cards.edges.map(edge => {
-            print.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
-          })
-        }
-      });
-
-      print.push('');
-
-      print.push(':earth_asia: **[Customers APAC](https://github.com/github/services/projects/3)**');
-
-      res.apac.columns.nodes.map(column => {
-        if (column.cards.edges.length) {
-          column.cards.edges.map(edge => {
-            print.push(`- [ ] ${edge.node.content.title} ${edge.node.content.url}`);
-          })
-        }
-      });
-
-      print.push('');
-
-      clipboardy.writeSync(print.join('\n'));
+      clipboardy.writeSync(cbStr);
 
       console.log('copied to clipboard');
     })

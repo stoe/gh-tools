@@ -118,10 +118,10 @@ exports.tools = {
         repository(owner: "github", name: "services") {
           project(number: ${number}) {
             ... on Project {
-              columns(first: 1) {
+              columns(first: 3) {
                 nodes {
                   ... on ProjectColumn {
-                    columnname: name
+                    name
                   }
                   cards(first: 100) {
                     edges {
@@ -148,7 +148,7 @@ exports.tools = {
 
       getResponse(query)
         .then(response => {
-          resolve(response.body.data.repository.project);
+          resolve(response.body.data.repository.project.columns.nodes);
         })
         .catch(err => {
           reject(err);

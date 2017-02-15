@@ -10,5 +10,5 @@ dependencies:
 
 test:
   override:
-    - nvm use 6 && npm test
-    - nvm use 7 && test
+    - nvm use 6 && snyk auth $SNYK_TOKEN && npm test
+    - nvm use 7 && snyk auth $SNYK_TOKEN && npm test

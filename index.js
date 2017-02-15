@@ -11,7 +11,7 @@ const ghTools = require('./src/tools').tools;
 const openURL = response => {
   const opn = require('opn');
 
-  opn(response, {wait: false}).then(res => {
+  opn(response, { wait: false}).then(res => {
     console.log(res.spawnargs[1]);
   });
 };

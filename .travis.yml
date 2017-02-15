@@ -19,4 +19,3 @@ env:
 install: 'npm install'
 before_script: 'snyk auth $SNYK_TOKEN'
 script: 'npm test'
-after_script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'

@@ -11,7 +11,7 @@ const ghTools = require('./src/tools').tools;
 const openURL = response => {
   const opn = require('opn');
 
-  opn(response, { wait: false }).then(res => {
+  opn(response, {wait: false}).then(res => {
     console.log(res.spawnargs[1]);
   });
 };
@@ -30,7 +30,7 @@ args.command('status', 'List Current System Status', () => {
 
 // services
 args.command(
-  [ 's', 'services' ],
+  ['s', 'services'],
   `Open https://github.com/github/services`,
   () => {
     ghTools.repo('services').then(openURL).catch(err => {
@@ -41,7 +41,7 @@ args.command(
 
 // services-engineering
 args.command(
-  [ 'eng', 'services-engineering' ],
+  ['eng', 'services-engineering'],
   `Open https://github.com/github/services-engineering`,
   () => {
     ghTools.repo('services-engineering').then(openURL).catch(err => {
@@ -52,7 +52,7 @@ args.command(
 
 // services-operations
 args.command(
-  [ 'ops', 'services-operations' ],
+  ['ops', 'services-operations'],
   `Open https://github.com/github/services-operations`,
   () => {
     ghTools.repo('services-operations').then(openURL).catch(err => {
@@ -63,7 +63,7 @@ args.command(
 
 // services-tools
 args.command(
-  [ 'tool', 'services-tools' ],
+  ['tool', 'services-tools'],
   `Open https://github.com/github/services-tools`,
   () => {
     ghTools.repo('services-tools').then(openURL).catch(err => {
@@ -74,7 +74,7 @@ args.command(
 
 // services-training
 args.command(
-  [ 'train', 'services-training' ],
+  ['train', 'services-training'],
   `Open https://github.com/github/services-training`,
   () => {
     ghTools.repo('services-training').then(openURL).catch(err => {
@@ -84,14 +84,14 @@ args.command(
 );
 
 // radar
-args.command([ 'r', 'radar' ], `Open current Services Radar`, () => {
+args.command(['r', 'radar'], `Open current Services Radar`, () => {
   ghTools.radar().then(openURL).catch(err => {
     console.log(`${err}`);
   });
 });
 
 // projects
-args.command([ 'projects' ], `My GitHub Services Projects`, () => {
+args.command(['projects'], `My GitHub Services Projects`, () => {
   let data = {
     emea: [
       ':earth_africa: **[Customers EMEA](https://github.com/github/services/projects/2)**'
@@ -99,31 +99,31 @@ args.command([ 'projects' ], `My GitHub Services Projects`, () => {
     apac: [
       ':earth_asia: **[Customers APAC](https://github.com/github/services/projects/3)**'
     ],
-    partner: [ ':briefcase: **Partner**' ],
-    github: [ ':octocat: **GitHub**' ]
+    partner: [':briefcase: **Partner**'],
+    github: [':octocat: **GitHub**']
   };
 
   const mapData = (column, territory, partner, github) => {
-    if (column.name === 'Customers' && !!territory) {
+    if (column.name === 'Customers' && Boolean(territory)) {
       column.cards.edges.map(edge => {
-        territory.push(
-          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
+        return territory.push(
+          `- [] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
 
-    if (column.name === 'Partners' && !!partner) {
+    if (column.name === 'Partners' && Boolean(partner)) {
       column.cards.edges.map(edge => {
-        partner.push(
-          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
+        return partner.push(
+          `- [] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
 
-    if (column.name === 'GitHub' && !!github) {
+    if (column.name === 'GitHub' && Boolean(github)) {
       column.cards.edges.map(edge => {
-        github.push(
-          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
+        return github.push(
+          `- [] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
@@ -133,18 +133,18 @@ args.command([ 'projects' ], `My GitHub Services Projects`, () => {
     .projects(2)
     .then(emea => {
       emea.map(
-        (column, i) =>
-          mapData.call(null, column, data.emea, data.partner, data.github)
+        column =>
+          mapData(column, data.emea, data.partner, data.github)
       );
 
       return ghTools.projects(3).then(apac => {
         apac.map(
-          (column, i) =>
-            mapData.call(null, column, data.apac, data.partner, data.github)
+          column =>
+            mapData(column, data.apac, data.partner, data.github)
         );
       });
     })
-    .then(res => {
+    .then(() => {
       let cbStr = [
         _.uniq(data.emea).join('\n'),
         '',
@@ -200,7 +200,7 @@ args.command('emea', 'List open EMEA issues', () => {
     });
 });
 
-args.parse(process.argv, { name: 'gh-tools' });
+args.parse(process.argv, {name: 'gh-tools'});
 
 if (process.argv.length <= 2) {
   args.showHelp();

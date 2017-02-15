@@ -30,4 +30,4 @@ for (var i = 0; i < workflows.length; i++) {
   }
 }
 
-console.log(JSON.stringify({ items: items }));
+console.log(JSON.stringify({items: items}));

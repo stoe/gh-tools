@@ -4,6 +4,7 @@ const moment = require('moment');
 
 // Mine
 const getResponse = query => {
+  /* eslint import/no-unresolved: [2, { ignore: ['config.json'] }] */
   const token = require('../config.json').token || false;
 
   if (!token) {
@@ -12,8 +13,8 @@ const getResponse = query => {
 
   return ghgot('https://api.github.com/graphql', {
     json: true,
-    headers: { authorization: `bearer ${token}` },
-    body: { query }
+    headers: {authorization: `bearer ${token}`},
+    body: {query}
   });
 };
 
@@ -100,10 +101,10 @@ exports.tools = {
           let repo = response.body.data.repository;
 
           resolve({
-            url: repo.url
-              ? `${repo.url}/issues?q=is:open is:issue label:"ST: ${territory}"`
-              : null,
-            count: Number.parseInt(repo.issues.totalCount),
+            url: repo.url ?
+              `${repo.url}/issues?q=is:open is:issue label:"ST: ${territory}"` :
+              null,
+            count: Number.parseInt(repo.issues.totalCount, 10),
             project: repo.projects.nodes[0].url
           });
         })
@@ -113,7 +114,7 @@ exports.tools = {
     });
   },
   projects: (number = 2) => {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       let query = `query {
         repository(owner: "github", name: "services") {
           project(number: ${number}) {

@@ -1,0 +1,14 @@
+machine:
+  timezone: Europe/Berlin
+  node:
+    version: 7.4.0
+
+dependencies:
+  override:
+    - nvm use 6 && npm install
+    - nvm use 7 && npm install
+
+test:
+  override:
+    - nvm use 6 && npm test
+    - nvm use 7 && test

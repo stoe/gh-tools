@@ -1,7 +1,5 @@
 machine:
   timezone: Europe/Berlin
-  node:
-    version: 7.4.0
 
 dependencies:
   override:
@@ -10,5 +8,5 @@ dependencies:
 
 test:
   override:
-    - nvm use 6 && xo
-    - nvm use 7 && xo
+    - nvm use 6 && ./node_modules/.bin/snyk test && ./node_modules/.bin/xo
+    - nvm use 7 && ./node_modules/.bin/snyk test && ./node_modules/.bin/xo

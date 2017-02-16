@@ -107,7 +107,7 @@ args.command(['projects'], `My GitHub Services Projects`, () => {
     if (column.name === 'Customers' && Boolean(territory)) {
       column.cards.edges.map(edge => {
         return territory.push(
-          `- [] ${edge.node.content.title} ${edge.node.content.url}`
+          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
@@ -115,7 +115,7 @@ args.command(['projects'], `My GitHub Services Projects`, () => {
     if (column.name === 'Partners' && Boolean(partner)) {
       column.cards.edges.map(edge => {
         return partner.push(
-          `- [] ${edge.node.content.title} ${edge.node.content.url}`
+          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
@@ -123,7 +123,7 @@ args.command(['projects'], `My GitHub Services Projects`, () => {
     if (column.name === 'GitHub' && Boolean(github)) {
       column.cards.edges.map(edge => {
         return github.push(
-          `- [] ${edge.node.content.title} ${edge.node.content.url}`
+          `- [ ] ${edge.node.content.title} ${edge.node.content.url}`
         );
       });
     }
